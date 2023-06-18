@@ -12,10 +12,12 @@ const AppFormFields = ({
   placeholder,
   eyeIcon,
   iconName,
+  autoCapitalize,
+  value,
   name,
   ...inputProps
 }) => {
-  const { handleChange, setFieldTouched, touched, errors } = useFormikContext();
+  const { handleChange, setFieldTouched, touched, errors, values } = useFormikContext();
 
   return (
     <>
@@ -27,8 +29,10 @@ const AppFormFields = ({
         onBlur={() => setFieldTouched(name)}
         onPress={onPress}
         eyeIcon={eyeIcon}
-        onChangeText={() => handleChange(name)}
+        onChangeText={handleChange(name)}
         iconName={iconName}
+        value={values[name]}
+        autoCapitalize={autoCapitalize}
       />
       <ErrorText error={errors[name]} visible={touched[name]}/>
     </>

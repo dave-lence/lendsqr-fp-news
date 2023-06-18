@@ -24,7 +24,7 @@ const ListingDetailsScreen = ({ navigation, route }) => {
         {/* heading */}
         <View>
           <Image
-            source={{ uri :item.image}}
+            source={{uri:item.media}}
             style={{ height: 450, width: "100%" }}
           />
           <TouchableOpacity
@@ -47,7 +47,7 @@ const ListingDetailsScreen = ({ navigation, route }) => {
           </TouchableOpacity>
 
           <View
-            style={{ position: "absolute", top: 250, paddingHorizontal: 30 }}
+            style={{ position: "absolute", top: 220, paddingHorizontal: 30 }}
           >
             <View
               style={{
@@ -77,8 +77,7 @@ const ListingDetailsScreen = ({ navigation, route }) => {
                 fontSize: 16,
               }}
             >
-              A new study indicates that the condition might be less of a worry
-              than once believed.
+             {item.summary.slice(0, 75)}
             </AppText>
           </View>
         </View>
@@ -111,7 +110,7 @@ const ListingDetailsScreen = ({ navigation, route }) => {
             >
               <Image
                 style={{ width: 30, height: 30, borderRadius: 25 }}
-                source={require("../assets/landing4.jpg")}
+                source={{uri:item.media_content[4]}}
               />
               <AppText
                 style={{
@@ -124,7 +123,7 @@ const ListingDetailsScreen = ({ navigation, route }) => {
                 {item.author}
               </AppText>
             </View>
-            <AppText style={{ color: colors.medium }}>4 hours ago</AppText>
+            <AppText style={{ color: colors.medium }}>{item.published_date}</AppText>
           </View>
 
           <View style={{ marginTop: 30 }}>
@@ -134,24 +133,7 @@ const ListingDetailsScreen = ({ navigation, route }) => {
                 fontWeight: "600",
               }}
             >
-              Text nOIQE UIqhiude skjsyuei sjaisyur xmcnskso snshduro sajsidiene
-              djdois dhjduksx xcisowkr fdndksoidf sjsdi mlLAOW WMDOSIEND Text
-              nOIQE UIqhiude skjsyuei sjaisyur xmcnskso snshduro sajsidiene
-              djdois dhjduksx xcisowkr fdndksoidf sjsdi mlLAOW WMDOSIEND Text
-              nOIQE UIqhiude skjsyuei sjaisyur xmcnskso snshduro sajsidiene
-              djdois dhjduksx xcisowkr fdndksoidf sjsdi mlLAOW WMDOSIEND Text
-              nOIQE UIqhiude skjsyuei sjaisyur xmcnskso snshduro sajsidiene
-              djdois dhjduksx xcisowkr fdndksoidf sjsdi mlLAOW WMDOSIEND Text
-              nOIQE UIqhiude skjsyuei sjaisyur xmcnskso snshduro sajsidiene
-              djdois dhjduksx xcisowkr fdndksoidf sjsdi mlLAOW WMDOSIEND Text
-              nOIQE UIqhiude skjsyuei sjaisyur xmcnskso snshduro sajsidiene
-              djdois dhjduksx xcisowkr fdndksoidf sjsdi mlLAOW WMDOSIEND Text
-              nOIQE UIqhiude skjsyuei sjaisyur xmcnskso snshduro sajsidiene
-              djdois dhjduksx xcisowkr fdndksoidf sjsdi mlLAOW WMDOSIEND Text
-              nOIQE UIqhiude skjsyuei sjaisyur xmcnskso snshduro sajsidiene
-              djdois dhjduksx xcisowkr fdndksoidf sjsdi mlLAOW WMDOSIEND Text
-              nOIQE UIqhiude skjsyuei sjaisyur xmcnskso snshduro sajsidiene
-              djdois dhjduksx xcisowkr fdndksoidf sjsdi mlLAOW WMDOSIEND
+              {item.summary}
             </AppText>
           </View>
         </View>

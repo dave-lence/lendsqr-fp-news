@@ -22,7 +22,7 @@ const NewsForms = ({ onPress,iconName, password, eyeIcon, ...inputProps }) => {
       <MaterialCommunityIcons name={iconName} size={24} color={colors.medium} />
       <TextInput
         style={{ color: colors.medium, flex: 1, marginLeft: 10 }}
-        {...inputProps}      
+        {...inputProps}   
       />
       {password && (
         <MaterialCommunityIcons name={eyeIcon} size={24} color={colors.medium} onPress={onPress} />

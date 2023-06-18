@@ -1,4 +1,4 @@
-import { View, Text } from "react-native";
+import { View, Text, Platform } from "react-native";
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
@@ -6,6 +6,9 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import ListingScreen from "../Screens/ListingScreen";
 import colors from "../Config/colors";
 import ListingNavigation from "./ListingNavigation";
+import AccountScreen from "../Screens/AccountScreen";
+import SearchNavigation from "./SearchNavigation";
+import Routes from "./Routes";
 
 const BottomTab = createBottomTabNavigator();
 const Tab = () => {
@@ -19,7 +22,7 @@ const Tab = () => {
       }}
     >
       <BottomTab.Screen
-        name="Listings"
+        name="ListingNavigator"
         component={ListingNavigation}
         options={{
           tabBarIcon: ({ size, color }) => (
@@ -30,8 +33,8 @@ const Tab = () => {
         }}
       />
       <BottomTab.Screen
-        name="ListScreen"
-        component={ListingScreen}
+        name="Search"
+        component={SearchNavigation}
         options={{
           tabBarIcon: ({ size, color }) => (
             <View
@@ -44,6 +47,17 @@ const Tab = () => {
                 backgroundColor: colors.white,
                 justifyContent: "center",
                 alignItems: "center",
+                ...Platform.select({
+                  ios: {
+                    shadowColor: '#000',
+                    shadowOffset: { width: 0, height: 2 },
+                    shadowOpacity: 0.5,
+                    shadowRadius: 4,
+                  },
+                  android: {
+                    elevation: 4,
+                  },
+                }),
               }}
             >
               <MaterialCommunityIcons
@@ -58,8 +72,8 @@ const Tab = () => {
         }}
       />
       <BottomTab.Screen
-        name="Listing"
-        component={ListingScreen}
+        name="Account"
+        component={AccountScreen}
         options={{
           tabBarIcon: ({ size, color }) => (
             <MaterialCommunityIcons name="account" size={size} color={color} />

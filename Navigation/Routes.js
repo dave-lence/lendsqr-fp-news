@@ -2,5 +2,6 @@ export default {
     signUp: "SignUpScreen",
     logIn: "LoginScreen",
     listings: "ListingScreen",
-    listingsDetails: "ListingDetailsScreen"
+    listingsDetails: "ListingDetailsScreen",
+    searchScreen: "SearchScreen",
 }

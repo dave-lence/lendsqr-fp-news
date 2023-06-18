@@ -5,7 +5,7 @@ import React from 'react'
 import colors from '../../Config/colors'
 
 const ErrorText = ({error, visible}) => {
-    if(!error || !visible) return null
+    if(!visible || !error) return null
   return (
     <View>
        <Text style={{color: colors.danger, fontSize:13}}>{error}</Text>

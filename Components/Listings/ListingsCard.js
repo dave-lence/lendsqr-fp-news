@@ -41,19 +41,19 @@ const ListingsCard = ({ image, topic, title, author, date, onPress }) => {
 
       <View style={{ padding: 10 }}>
         <AppText
-          style={{ fontWeight: "bold", fontSize: 23, color: colors.black }}
+          style={{ fontWeight: "bold", fontSize: 20, color: colors.black }}
         >
           {title}
         </AppText>
         <AppText
-          style={{ fontWeight: "500", fontSize: 15, color: colors.medium }}
+          style={{ fontWeight: "500", fontSize: 15, color: colors.medium, marginVertical:7 }}
         >
-          {date}
+          Posted on: {date}
         </AppText>
         <AppText
           style={{ fontWeight: "500", fontSize: 15, color: colors.medium }}
         >
-         By {author}
+         By:{author}
         </AppText>
       </View>
     </TouchableOpacity>

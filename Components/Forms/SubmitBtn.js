@@ -10,8 +10,8 @@ const SubmitButton = ({
   width = "100%",
 }) => {
 
-    const {handleSubmit} = useFormikContext()
- 
+    const {handleSubmit, resetForm} = useFormikContext()
+
 
   return (
     <TouchableOpacity

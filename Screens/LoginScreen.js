@@ -7,10 +7,18 @@ import {
   ScrollView,
   KeyboardAvoidingView,
   Platform,
+  Alert,
 } from "react-native";
 import React, { useState } from "react";
 import * as Yup from "yup";
+import { auth } from "../FireBaseConnector";
+import { useSelector, useDispatch } from "react-redux";
+import { setUser } from "../Redux/userSlice";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
+
+// custom files
 import Screen from "../Config/Screen";
 import colors from "../Config/colors";
 import AppFormik from "../Components/Forms/AppFormik";
@@ -21,11 +29,13 @@ import Routes from "../Navigation/Routes";
 
 const validationSchema = Yup.object().shape({
   email: Yup.string().email().required().label("Email"),
-  password: Yup.string().required().min(5).label("Password"),
+  password: Yup.string().required().min(6).label("Password"),
 });
 
-const LoginScreen = ({navigation}) => {
+const LoginScreen = ({ navigation }) => {
   const [showPassword, setShowPassword] = useState(false);
+
+  const dispatch = useDispatch()
 
   return (
     <Screen>
@@ -99,7 +109,16 @@ const LoginScreen = ({navigation}) => {
           </Text>
           <AppFormik
             initialValues={{ email: "", password: "" }}
-            onSubmit={(values) => console.log(values)}
+            onSubmit={(values) => {
+              signInWithEmailAndPassword(auth, values.email, values.password)
+                .then((userCredentials) => {
+                  const user = userCredentials.user;
+                  dispatch(setUser(user))
+                  navigation.navigate(Routes.listings)
+                  AsyncStorage.setItem('user', JSON.stringify(user))
+                })
+                .catch((error) => alert(error));
+            }}
             validationSchema={validationSchema}
           >
             <AppFormFields
@@ -107,6 +126,7 @@ const LoginScreen = ({navigation}) => {
               placeholder={"Email address"}
               name={"email"}
               autoCorrect={false}
+              autoCapitalize="none"
             />
             <AppFormFields
               iconName={"lock"}

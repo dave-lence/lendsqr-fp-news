@@ -4,27 +4,32 @@
     "slug": "LendsqrfpNews",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/logo2.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/logo2.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#40c9b7"
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
-      }
+        "foregroundImage": "./assets/logo2.png",
+        "backgroundColor": "#40c9b7"
+      },
+      "package": "com.ogmeech.LendsqrfpNews"
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/logo2.png"
+    },
+    "scheme": "mycoolredirect",
+    "extra": {
+      "eas": {
+        "projectId": "08d10279-7492-4a1f-a823-26f288b6d401"
+      }
     }
   }
 }
