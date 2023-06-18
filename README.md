@@ -73,5 +73,8 @@ Replace "my-app" with your project name. This would initialize a new expo projec
 
 3. Distribute the installable build via Firebase App Distribution to the email addresses umar@lendsqr.com and afolabi@lendsqr.com.
 
+### NOTE: 
+Incase you run the application and you see an error regarding getting news, you would need an api key which i hid for security reasons. So you can reach me concerning api key.
+
 ## Conclusion
 This implementation plan outlines the steps required to develop the FP News application using React Native, Redux Toolkit for state management, Axios (or native fetch) for API calls, React Navigation for navigation, CodePush for Over-The-Air updates, and various Firebase services such as Firebase Authentication, Firebase Realtime Database, Firebase Analytics, and Firebase Remote Configuration. By following this plan, you will be able to create a functional news application with news listing, news details, sign-up, and login features. The application will be hosted on Firebase, and an installable build will be distributed via Firebase App Distribution.
