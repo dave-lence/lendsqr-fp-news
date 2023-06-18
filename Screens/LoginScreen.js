@@ -139,7 +139,7 @@ const LoginScreen = ({ navigation }) => {
               onPress={() => setShowPassword(!showPassword)}
             />
 
-            <SubmitButton title={"Sign Up"} />
+            <SubmitButton title={"Sign In"} />
 
             <Text style={{ marginTop: 30, alignSelf: "center" }}>
               Don't have an account?{" "}
