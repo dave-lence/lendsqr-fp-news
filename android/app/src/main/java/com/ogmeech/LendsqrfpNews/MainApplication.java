@@ -3,6 +3,7 @@ package com.ogmeech.LendsqrfpNews;
 import android.app.Application;
 import android.content.res.Configuration;
 import androidx.annotation.NonNull;
+import com.facebook.react.BuildConfig;
 
 import com.facebook.react.PackageList;
 import com.facebook.react.ReactApplication;
@@ -63,6 +64,9 @@ public class MainApplication extends Application implements ReactApplication {
     if (BuildConfig.IS_NEW_ARCHITECTURE_ENABLED) {
       // If you opted-in for the New Architecture, we load the native entry point for this app.
       DefaultNewArchitectureEntryPoint.load();
+    }
+    if (BuildConfig.DEBUG) {
+      Stetho.initializeWithDefaults(this);
     }
     ReactNativeFlipper.initializeFlipper(this, getReactNativeHost().getReactInstanceManager());
     ApplicationLifecycleDispatcher.onApplicationCreate(this);

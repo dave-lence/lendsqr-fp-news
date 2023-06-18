@@ -10,6 +10,7 @@ import SearchInput from "../Components/Search/SearchInput";
 import SearchCards from "../Components/Search/SearchCards";
 import Topics from "../Components/Listings/Topics";
 import Routes from "../Navigation/Routes";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const SearchScreen = ({ navigation }) => {
   const [getNews, setGetNews] = useState([]);
@@ -47,7 +48,7 @@ const SearchScreen = ({ navigation }) => {
       item.title.includes(text)
     );
     setFilteredData(filteredItem);
-   
+    AsyncStorage.setItem("search", JSON.stringify(filteredData));
   };
 
   return (
@@ -66,18 +67,19 @@ const SearchScreen = ({ navigation }) => {
 
       {/* news topics */}
 
-      <FlatList
-        showsHorizontalScrollIndicator={false}
-        horizontal
-        maxToRenderPerBatch={5}
-        data={getNews.articles}
-        key={(item) => item.id}
-        renderItem={({ item }) => <Topics key={item.id} topic={item.topic} />}
-      />
-      
+      <View style={{marginBottom:-30}}>
+        <FlatList
+          showsHorizontalScrollIndicator={false}
+          horizontal
+          maxToRenderPerBatch={5}
+          data={getNews.articles}
+          key={(item) => item.id}
+          renderItem={({ item }) => <Topics key={item.id} topic={item.topic} />}
+        />
+      </View>
 
       {/* rendered data */}
-      <View style={{ marginVertical: 30, }}>
+      <View style={{ marginVertical: 30 }}>
         <FlatList
           data={filteredData}
           keyExtractor={(item) => item.id}

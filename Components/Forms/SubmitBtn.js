@@ -1,6 +1,7 @@
-import { View, Text, TouchableOpacity } from "react-native";
+import { View, Text, TouchableOpacity, Animated, ActivityIndicator } from "react-native";
 import React from "react";
 import { useFormikContext } from "formik";
+import { useState } from "react";
 
 import colors from "../../Config/colors";
 
@@ -9,9 +10,8 @@ const SubmitButton = ({
   backgroundColor = colors.primary,
   width = "100%",
 }) => {
-
-    const {handleSubmit, resetForm} = useFormikContext()
-
+  const { handleSubmit, resetForm } = useFormikContext();
+  const [loading, setLoading] = useState(false);
 
   return (
     <TouchableOpacity
@@ -24,11 +24,21 @@ const SubmitButton = ({
         alignItems: "center",
         marginVertical: 10,
       }}
-      onPress={handleSubmit}
+      onPress={() => {
+        setLoading(true);
+        setTimeout(() => {
+          setLoading(false)
+          handleSubmit();
+        }, 3000);
+      }}
       activeOpacity={0.7}
     >
       <Text style={{ color: colors.white, fontWeight: "500", fontSize: 20 }}>
-        {title}
+        {loading ? (
+          <ActivityIndicator color={"#fff"}/>
+        ) : (
+          title
+        )}
       </Text>
     </TouchableOpacity>
   );

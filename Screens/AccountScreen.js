@@ -3,7 +3,7 @@ import React from "react";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { clearUser } from "../Redux/userSlice";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 //custom files
 import Screen from "../Config/Screen";
@@ -12,15 +12,17 @@ import colors from "../Config/colors";
 import ProfileCards from "../Components/Account/ProfileCards";
 import Routes from "../Navigation/Routes";
 
-const AccountScreen = ({navigation}) => {
+const AccountScreen = ({ navigation }) => {
+  const user = useSelector((state) => state.user.user);
+  const userEmail = user ? user.email : " ";
 
-  const dispatch = useDispatch()
- 
+  const dispatch = useDispatch();
+
   const logOut = () => {
-     dispatch(clearUser())
-     AsyncStorage.removeItem("user")
-     navigation.navigate(Routes.logIn)
-  }
+    dispatch(clearUser());
+    AsyncStorage.removeItem("user");
+    navigation.navigate(Routes.logIn);
+  };
 
   return (
     <Screen style={{ paddingHorizontal: 0 }}>
@@ -103,10 +105,7 @@ const AccountScreen = ({navigation}) => {
               fontSize: 18,
             }}
           >
-            John Doe
-          </AppText>
-          <AppText style={{ marginTop: 5, color: colors.white, fontSize: 14 }}>
-            www.JohnDoe@gmail.com
+            {userEmail}
           </AppText>
         </View>
       </View>
@@ -115,7 +114,7 @@ const AccountScreen = ({navigation}) => {
         <ProfileCards name={"lock"} title={"Change Password"} />
         <ProfileCards name={"email"} title={"Email Address"} />
         <ProfileCards name={"phone"} title={"Support"} />
-        <ProfileCards name={"logout"} title={"Logout"} onPress={logOut}/>
+        <ProfileCards name={"logout"} title={"Logout"} onPress={logOut} />
       </View>
     </Screen>
   );

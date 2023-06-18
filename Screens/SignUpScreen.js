@@ -214,7 +214,7 @@ const SignUpScreen = ({ navigation }) => {
               borderColor: colors.primary,
               borderWidth: 0.7,
             }}
-            onPress={() => handleGoogleSignIn()}
+            onPress={() => promptAsync()}
           >
             <Image
               source={require("../assets/google2.png")}

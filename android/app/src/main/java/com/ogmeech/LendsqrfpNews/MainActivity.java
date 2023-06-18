@@ -3,6 +3,10 @@ package com.ogmeech.LendsqrfpNews;
 import android.os.Build;
 import android.os.Bundle;
 
+import com.facebook.react.modules.network.OkHttpClientProvider;
+import com.facebook.stetho.Stetho;
+import com.facebook.react.modules.network.ReactCookieJarContainer;
+import com.facebook.react.modules.network.ReactNativeConfigProvider;
 import com.facebook.react.ReactActivity;
 import com.facebook.react.ReactActivityDelegate;
 import com.facebook.react.defaults.DefaultNewArchitectureEntryPoint;
@@ -17,7 +21,18 @@ public class MainActivity extends ReactActivity {
     // coloring the background, status bar, and navigation bar.
     // This is required for expo-splash-screen.
     setTheme(R.style.AppTheme);
+    OkHttpClientProvider.setOkHttpClientFactory(
+  () -> {
+    OkHttpClient.Builder clientBuilder = OkHttpClientProvider.createClientBuilder();
+    clientBuilder.cookieJar(new ReactCookieJarContainer());
+    return OkHttpClientProvider.enableTls12OnPreLollipop(clientBuilder).build();
+  }
+);
     super.onCreate(null);
+    if (BuildConfig.DEBUG) {
+  Stetho.initializeWithDefaults(this);
+}
+ReactNativeConfigProvider.initialize(BuildConfig.class);
   }
 
   /**
