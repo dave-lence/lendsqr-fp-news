@@ -27,6 +27,8 @@
         <category android:name="android.intent.category.DEFAULT"/>
         <category android:name="android.intent.category.BROWSABLE"/>
         <data android:scheme="com.ogmeech.LendsqrfpNews"/>
+        <data android:scheme="mycoolredirect"/>
+        <data android:scheme="exp+lendsqrfpnews"/>
       </intent-filter>
     </activity>
     <activity android:name="com.facebook.react.devsupport.DevSettingsActivity" android:exported="false"/>

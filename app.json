@@ -13,15 +13,18 @@
     },
     "assetBundlePatterns": ["**/*"],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "googleServicesFile": "./GoogleService-Info.plist"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/logo2.png",
-        "backgroundColor": "#fff"
+        "backgroundColor": "#fff",
+        "googleServicesFile": "./google-services.json"
       },
       "package": "com.ogmeech.LendsqrfpNews"
     },
+    "plugins": ["@react-native-google-signin/google-signin"],
     "web": {
       "favicon": "./assets/logo2.png"
     },

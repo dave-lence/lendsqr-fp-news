@@ -6,18 +6,13 @@ import {
   ScrollView,
   Platform,
   KeyboardAvoidingView,
-  Alert,
 } from "react-native";
-import React, { useEffect, useState } from "react";
-import { useFormikContext } from "formik";
+import React, { useState, useEffect } from "react";
 import * as Yup from "yup";
-import * as Google from "expo-auth-session/providers/google";
-import * as AuthSession from "expo-auth-session";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import * as WebBrowser from "expo-web-browser";
-import { makeRedirectUri } from "expo-auth-session";
 import { auth } from "../FireBaseConnector";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { setUser } from "../Redux/userSlice";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 
@@ -54,55 +49,8 @@ const SignUpScreen = ({ navigation }) => {
   });
 
   const [showPassword, setShowPassword] = useState(false);
-  const [showCpassword, setShowCpassword] = useState(false); 
-  const dispatch = useDispatch()
-
-  // const [user, setUser] = useState(null);
-
-  // const [request, response, promptAsync] = AuthSession.useAuthRequest({
-  //   clientId:
-  //     "694351268588-sisl4amtj6frah4fh5s1qi3k2cqurp15.apps.googleusercontent.com",
-  //   redirectUri: makeRedirectUri({ scheme: "mycoolredirect" }),
-  // });
-
-  // useEffect(() => {
-  //   handleSignIn();
-  // }, [response]);
-
-  // const handleSignIn = async () => {
-  //   const user = await AsyncStorage.getItem("@user");
-  //   if (!user) {
-  //     if (response?.type === "success") {
-  //       await getUserInfo(response.authentication.accessToken);
-  //     }
-  //   } else {
-  //     setUser(JSON.parse(user));
-  //   }
-  // };
-
-  // const getUserInfo = async (token) => {
-  //   if (!token) return;
-  //   try {
-  //     const response = await fetch(
-  //       "https://www.googleapis.com/userinfo/v2/me",
-  //       { headers: { Authorization: `Bearer ${token}` } }
-  //     );
-
-  //     const user = await response.json();
-  //     await AsyncStorage.setItem("@user", JSON.stringify(user));
-  //     setUser(user);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
-
-  // const handleGoogleSignIn = () => {
-  //   if (request) {
-  //     promptAsync();
-  //   } else {
-  //     console.log("Google authentication request is not ready yet.");
-  //   }
-  // };
+  const [showCpassword, setShowCpassword] = useState(false);
+  const dispatch = useDispatch();
 
   return (
     <Screen>
@@ -137,13 +85,15 @@ const SignUpScreen = ({ navigation }) => {
               createUserWithEmailAndPassword(
                 auth,
                 values.email,
-                values.password,
-              ).then((userCredentials) => {
-                const user = userCredentials.user;
-                dispatch(setUser(user))
-                navigation.navigate(Routes.listings)
-                AsyncStorage.setItem("user", JSON.stringify(user))
-              }).catch((error) => alert(error));
+                values.password
+              )
+                .then((userCredentials) => {
+                  const user = userCredentials.user;
+                  dispatch(setUser(user));
+                  navigation.navigate(Routes.listings);
+                  AsyncStorage.setItem("user", JSON.stringify(user));
+                })
+                .catch((error) => alert(error));
             }}
             validationSchema={validationSchema}
           >
@@ -214,7 +164,11 @@ const SignUpScreen = ({ navigation }) => {
               borderColor: colors.primary,
               borderWidth: 0.7,
             }}
-            onPress={() => promptAsync()}
+            onPress={() =>
+              onGoogleButtonPress().then(() =>
+                console.log("Signed in with Google!")
+              )
+            }
           >
             <Image
               source={require("../assets/google2.png")}

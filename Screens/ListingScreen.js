@@ -20,7 +20,7 @@ const ListingScreen = ({ navigation }) => {
   const [loading, setLoading] = useState(false);
 
   const handleError = () => {
-    throw new Error("Runtime Error!")
+    throw new Error('Test Crash')// Force a crash
   }
 
   useEffect(() => {
@@ -80,7 +80,7 @@ const ListingScreen = ({ navigation }) => {
           activeOpacity={0.7}
           onPress={handleError}
         >
-          <Text style={{color:colors.white}}>Runtime error</Text>
+          <Text style={{color:colors.white}}>Test crash</Text>
         </TouchableOpacity>
       </View>
       {/* news listings */}

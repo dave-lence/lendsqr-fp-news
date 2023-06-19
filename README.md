@@ -71,7 +71,7 @@ Replace "my-app" with your project name. This would initialize a new expo projec
 
 2. Set up Firebase App Distribution in the Firebase console for the lendsqr-fp-news project.
 
-3. Distribute the installable build via Firebase App Distribution to the email addresses umar@lendsqr.com and afolabi@lendsqr.com.
+3. Distribute the installable build via Firebase App Distribution to the email addresses.
 
 ### NOTE: 
 Incase you run the application and you see an error regarding getting news, you would need an api key which i hid for security reasons. So you can reach me concerning api key.

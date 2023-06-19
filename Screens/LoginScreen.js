@@ -94,7 +94,7 @@ const LoginScreen = ({ navigation }) => {
               style={{ width: 20, height: 20, marginRight: 20 }}
             />
             <Text style={{ fontWeight: "bold", color: colors.primary }}>
-              Sign Up with Google
+              Sign In with Google
             </Text>
           </TouchableOpacity>
 
